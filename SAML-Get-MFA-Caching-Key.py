@@ -67,7 +67,7 @@ mfa_mechanism_id = options[choice].id
 
 
 ### STEP 2: ADVANCE AUTH WITH USERNAME AND PASSWORD ###
-url = "https://pineapple.cyberark.cloud/api/idadmin/Security/AdvanceAuthentication"
+url = f"https://{ispss_subdomain}.cyberark.cloud/api/idadmin/Security/AdvanceAuthentication"
 
 payload = json.dumps({
   "SessionId": session_id,
