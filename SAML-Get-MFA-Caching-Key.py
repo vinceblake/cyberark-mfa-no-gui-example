@@ -3,8 +3,8 @@ import json
 import getpass
 
 ### SET THESE VARIABLES ###
-ispss_subdomain = "pineapple"
-username = "vince.blake@pineappledev.app"
+ispss_subdomain = "example"
+username = "vince.blake@example.com"
 key_path = "/Users/Vince.Blake/Downloads"
 key_format = "PPK" # PEM, PPK or OPENSSH
 
@@ -130,11 +130,14 @@ headers = {
 response = requests.request("POST", url, headers=headers, data=payload)
 json_object = json.loads(response.text)
 
+
+
 try:
     key = json_object['value'][0]['privateKey']
-    with open(key_path, "w") as f:
+    file = f"{key_path}/mfa_caching_key.{key_format}"
+    with open(file, "w") as f:
         f.write(key)
-    print("Key successfully downloaded to {key_path}.")
+    print(f"Key successfully downloaded to {key_path}.")
 
 except:
     print("Sorry, an error occurred. Please check your settings and try again.")
