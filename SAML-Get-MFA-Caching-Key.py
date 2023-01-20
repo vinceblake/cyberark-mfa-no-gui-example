@@ -117,8 +117,6 @@ token = json_object['Result']['Token']
 
 
 ### STEP 5: GENERATE MFA CACHING KEY HAVING SUCCESSFULLY AUTHENTICATED ###
-key_path = '/Users/Vince.Blake/Downloads/key.ppk'
-
 url = f"https://{ispss_subdomain}.privilegecloud.cyberark.cloud/passwordvault/api/users/secret/sshkeys/cache"
 payload = json.dumps({
   "formats": [f"{key_format}"]
@@ -129,8 +127,6 @@ headers = {
 }
 response = requests.request("POST", url, headers=headers, data=payload)
 json_object = json.loads(response.text)
-
-
 
 try:
     key = json_object['value'][0]['privateKey']
