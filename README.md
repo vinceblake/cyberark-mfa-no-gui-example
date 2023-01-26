@@ -1,7 +1,7 @@
 # cyberark-mfa-no-gui-example
-This sample script performs MFA for a CyberArk Cloud Directory user on the Shared Services platform. It is used (in this case) to download an MFA Caching SSH key.
+These sample scripts perform MFA for a CyberArk Cloud Directory user. They are used (in this case) to download an MFA Caching SSH key.
 
-This is intended for a human user who will be present to interact with the script. The authentication process takes place in three stages and this script assumes that username/password is the first challenge issued by CyberArk Identity. 
+These scripts are intended for a human user who will be present to interact with them. The authentication process takes place in several stages and each script assumes that username/password is the first challenge issued by CyberArk Identity. 
 
 ## Notes on ISPSS
 This is primarily meant to serve as example code. It performs multifactor authentication to CyberArk Identity without requring a GUI-based, interactive browser. It will work exclusively for CyberArk Cloud Directory users on Shared Services (ISPSS) tenants. Federated users from outside sources should instead consult the relevant documentation for their respective identity providers (as this method **will not** work for them).
@@ -14,12 +14,22 @@ Although these scripts will allow a user to select their desired MFA challenge, 
 
 The error handling here ranges from weak to nonexistent. Double check the values of your variables before running the script, make sure you type your password correctly and wait till you see the "Authentication Successful" message from your MFA challenge before hitting enter to advance.
 
+## ISPSS Instructions
+1. Update variables in lines 7-10.
+4. `pip install -r requirements.txt`
+5. `python SAML-ISPSS-MFA-Caching-Key.py`
+6. Enter your user's password.
+7. Choose your desired MFA modality (if more than one is available)
+8. Respond to the MFA challenge and wait to see "Authentication Successful."
+7. Press enter to advance the script so that it can retrieve the token you just generated.
 
-## Instructions
-1. Update the variables near the top of the script you plan to run.
-2. `pip install -r requirements.txt`
-3. `python SAML-[Architecture]-MFA-Caching-Key.py`
-4. Enter your user's password.
-5. Choose your desired MFA modality (if more than one is available)
-6. Respond to the MFA challenge and wait to see "Authentication Successful."
+## Standalone Instructions
+1. Retrieve your SAML app key from CyberArk Identity per the notes above.
+2. `export pvwa_saml_app_key="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"`
+3. Update remaining variables in lines 7-13.
+4. `pip install -r requirements.txt`
+5. `python SAML-Standalone-MFA-Caching-Key.py`
+6. Enter your user's password.
+7. Choose your desired MFA modality (if more than one is available)
+8. Respond to the MFA challenge and wait to see "Authentication Successful."
 7. Press enter to advance the script so that it can retrieve the token you just generated.
