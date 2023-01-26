@@ -8,12 +8,6 @@ ispss_subdomain = "example"
 username = "vince.blake@example.com"
 key_path = "/Users/Vince.Blake/Downloads" # Directory to store SSH key. No trailing /.
 key_format = "PPK" # PEM, PPK or OPENSSH (or comma-separated list)
-require_ssl_verify = True # Set to False for self-signed certs (but use at your own risk)
-
-# Ignore SSL cert warnings from requests module?
-if require_ssl_verify is False:
-    from requests.packages.urllib3.exceptions import InsecureRequestWarning
-    requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 
 ### MFA MECHANISM OBJECT ###
@@ -110,7 +104,7 @@ headers = {
 
 # Give user a chance to respond to their MFA challenge.
 print(f"Please wait for {mfa_mechanism_name} challenge...\n")
-response = requests.request("POST", url, headers=headers, data=payload, verify=require_ssl_verify)
+response = requests.request("POST", url, headers=headers, data=payload)
 if response:
     input("MFA challenge sent. Press enter once you have completed it.\n")
 
@@ -142,7 +136,7 @@ headers = {
   'Authorization': f'Bearer {token}',
   'Content-Type': 'application/json'
 }
-response = requests.request("POST", url, headers=headers, data=payload, verify=require_ssl_verify)
+response = requests.request("POST", url, headers=headers, data=payload)
 json_object = json.loads(response.text)
 
 try:
