@@ -2,10 +2,11 @@ import requests
 import json
 import getpass
 import re
+import os
 
 ### SET THESE VARIABLES ###
 identity_subdomain = "example" # e.g https://EXAMPLE.id.cyberark.cloud
-pvwa_saml_app_key = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" # Retrieved from the SAML web app in Identity
+pvwa_saml_app_key = os.getenv(pvwa_saml_app_key) # Retrieved from the SAML web app in Identity.
 pvwa_url = "example.privilegecloud.cyberark.cloud" # Do not include https://
 username = "paul@example.com"
 key_path = "C:/Users/Paul/Desktop" # Directory to store the SSH key. No trailing /.
