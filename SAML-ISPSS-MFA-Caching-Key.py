@@ -8,12 +8,6 @@ ispss_subdomain = "example"
 username = "vince.blake@example.com"
 key_path = "/Users/Vince.Blake/Downloads" # Directory to store SSH key. No trailing /.
 key_format = "PPK" # PEM, PPK or OPENSSH (or comma-separated list)
-require_ssl_verify = True # Set to False for self-signed certs (but use at your own risk)
-
-# Ignore SSL cert warnings from requests module?
-if require_ssl_verify is False:
-    from requests.packages.urllib3.exceptions import InsecureRequestWarning
-    requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 
 ### MFA MECHANISM OBJECT ###
